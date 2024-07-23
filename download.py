@@ -1,7 +1,8 @@
-from fastapi import FastAPI, Request
-from fastapi.templating import Jinja2Templates
 from fastapi.responses import FileResponse, HTMLResponse
 import os, math
+from fastapi import FastAPI, File, UploadFile, Request, Form
+from fastapi.templating import Jinja2Templates
+import os
 
 app = FastAPI()
 
@@ -17,7 +18,17 @@ def convert_size(size_bytes):
     return f"{s} {size_name[i]}"
 
 
-@app.get("/")
+@app.post("/upload")
+async def upload_file(file: UploadFile = File(...)):
+    upload_directory = r"/workspaces/Concatinator/files"
+    os.makedirs(upload_directory, exist_ok=True)
+    file_path = os.path.join(upload_directory, file.filename)
+    with open(file_path, "wb") as f:
+        f.write(await file.read())
+    return {"filename": file.filename, "file_path": file_path}
+
+
+@app.get("/", response_class=HTMLResponse)
 def get_files(request: Request):
     files = os.listdir(os.path.join(os.getcwd(), 'savefiles'))
     files.sort()
@@ -29,6 +40,10 @@ def get_files(request: Request):
             "size": convert_size(filesize)
         })
     return templates.TemplateResponse("index.html", {"request": request, "title": "Concatinator", "files": files_with_sizes})
+
+@app.get("/file-upload", response_class=HTMLResponse)
+async def read_root(request: Request):
+    return templates.TemplateResponse("upload.html", {"request": request})
 
 @app.get("/download/{file}")
 async def download_file(file: str):

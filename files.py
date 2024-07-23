@@ -1,7 +1,7 @@
 import cv2
 import os
 
-source_dir = r"/workspaces/Concatinator/files/Digital painting with Krita 5.0 for Intermediate"
+source_dir = r"/workspaces/Concatinator/files/Digital Painting with Krita 5.0 Advanced"
 
 folders = os.listdir(source_dir)
 folders.sort()

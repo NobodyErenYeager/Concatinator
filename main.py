@@ -2,15 +2,17 @@ from concatinator import add_videos, combine_video
 
 
 folders = [
-    "1. INTRODUCTION",
-    "2. ADVANCED SELECTION TECHNIQUES",
-    "3. VECTOR GRAPHICS",
-    "4. FILTER AND MASK",
-    "5. STRAWBERRY HOUSE PROJECT",
-    "6. GRADATION",
-    "7. ROBOT WARRIOR PROJECT",
+    "01 - INTRODUCTION",
+    "02 - TRANSFORMATION AND DISTORTION",
+    "03 - ADVANCED LAYER FEATURES",
+    "04 - PATTERNS AND TEXTURES",
+    "05 - PHOTOBASHING",
+    "06 - PROJECT ATLANTIC TREASURE",
+    "07 - BRUSH PARAMETERS",
+    "08 - PAINTERLY STYLE AND CHEAT METHODS",
+    "09 - PROJECT COWBOY CACTUS",
 ]
 
 for folder in folders:
-    save_dir = add_videos(folder, separator=".")
+    save_dir = add_videos(folder, separator=" ")
     combine_video(folder, save_dir)
