@@ -1,7 +1,7 @@
 import os
 
-source_dir = r"C:\MyPythonPrograms\Deepak\Concatinator\files\The Ultimate React Course"
-destination_dir = r'C:\MyPythonPrograms\Deepak\Concatinator\files'
+source_dir = r"/workspaces/Concatinator/files/Digital painting with Krita 5.0 for Intermediate"
+destination_dir = r'/workspaces/Concatinator/files'
 
 folders = os.listdir(source_dir)
 folders.sort()
